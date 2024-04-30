@@ -5,7 +5,7 @@ sys.path.append(os.pardir)
 import pickle
 import numpy as np
 from dataset.mnist import load_mnist
-from vitalize_func import *
+from functions.vitalize import *
 
 
 def get_data():
@@ -41,12 +41,14 @@ def predict(network, x):
 
 x, t = get_data()
 network = init_network()
+batch_size = 100  # 배치 크기
 
 accuracy_cnt = 0
-for i in range(len(x)):
-    y = predict(network, x[i])
-    p = np.argmax(y)  # 확률이 가장 높은 원소의 인덱스
-    if p == t[i]:
-        accuracy_cnt += 1
+for i in range(0, len(x), batch_size):
+    x_batch = x[i : i + batch_size]
+    y_batch = predict(network, x_batch)
+
+    p = np.argmax(y_batch, axis=1)  # 100x10 행렬의 각 행마다 확률이 가장 높은 원소의 인덱스들을 배열로 반환한다
+    accuracy_cnt += np.sum(p == t[i : i + batch_size])
 
 print(f"정확도: {accuracy_cnt/len(x)}")

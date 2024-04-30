@@ -1,6 +1,5 @@
 # 활성화 함수
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 # 계단 함수
@@ -24,22 +23,23 @@ def identity(x):
 
 
 # Softmax 함수
-def softmax(x):
-    if x.ndim == 2:
-        x = x.T
-        x = x - np.max(x, axis=0)
-        y = np.exp(x) / np.sum(np.exp(x), axis=0)
-        return y.T
+def softmax(x: np.ndarray) -> np.ndarray:
+    # if x.ndim == 2:
+    #     x = x.T
+    #     x = x - np.max(x, axis=0)
+    #     y = np.exp(x) / np.sum(np.exp(x), axis=0)
+    #     return y.T
 
     x = x - np.max(x)  # 오버플로 대책
     return np.exp(x) / np.sum(np.exp(x))
 
 
-x = np.array([-1.0, 1.0, 2.0])
-
 if __name__ == "__main__":
-    x = np.arange(-5.0, 5.0, 0.1)
-    y = ReLU(x)
-    plt.plot(x, y)
-    plt.ylim(-0.1, 1.1)
-    plt.show()
+    # x = np.arange(-5.0, 5.0, 0.1)
+    # y = ReLU(x)
+    # plt.plot(x, y)
+    # plt.ylim(-0.1, 1.1)
+    # plt.show()
+    a = np.array([[1, 3]])
+    print(a.ndim)
+    print(softmax(a))

@@ -1,7 +1,7 @@
 # 신경망 구현 실습
 
 import numpy as np
-from vitalize_func import *
+from functions.vitalize import *
 
 # X = 초기값 W = 가중치 B = 편향 Z = 결과값 Y = 최종값
 
