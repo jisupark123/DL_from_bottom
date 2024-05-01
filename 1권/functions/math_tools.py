@@ -40,19 +40,19 @@ def _numerical_gradient_no_batch(f, x):
     return grad
 
 
-def numerical_gradient(f: callable, x: np.ndarray):
-    if x.ndim == 1:
-        return _numerical_gradient_no_batch(f, x)
-    else:
-        grad = np.zeros_like(x)
+# def numerical_gradient(f: callable, x: np.ndarray):
+#     if x.ndim == 1:
+#         return _numerical_gradient_no_batch(f, x)
+#     else:
+#         grad = np.zeros_like(x)
 
-        for idx, x in enumerate(x):
-            grad[idx] = _numerical_gradient_no_batch(f, x)
+#         for idx, x in enumerate(x):
+#             grad[idx] = _numerical_gradient_no_batch(f, x)
 
-        return grad
+#         return grad
 
 
-def gradient(f, x):
+def numerical_gradient(f, x):
     h = 1e-4  # 0.0001
     grad = np.zeros_like(x)
 
