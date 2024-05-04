@@ -1,7 +1,7 @@
 # 숫자 판별
 import sys, os
 
-sys.path.append(os.pardir)
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import pickle
 import numpy as np
 from dataset.mnist import load_mnist

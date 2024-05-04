@@ -1,7 +1,7 @@
 # 숫자 판별
 import sys, os
 
-sys.path.append(os.pardir)
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import pickle
 import numpy as np
 from dataset.mnist import load_mnist
@@ -48,7 +48,9 @@ for i in range(0, len(x), batch_size):
     x_batch = x[i : i + batch_size]
     y_batch = predict(network, x_batch)
 
-    p = np.argmax(y_batch, axis=1)  # 100x10 행렬의 각 행마다 확률이 가장 높은 원소의 인덱스들을 배열로 반환한다
+    p = np.argmax(
+        y_batch, axis=1
+    )  # 100x10 행렬의 각 행마다 확률이 가장 높은 원소의 인덱스들을 배열로 반환한다
     accuracy_cnt += np.sum(p == t[i : i + batch_size])
 
 print(f"정확도: {accuracy_cnt/len(x)}")
